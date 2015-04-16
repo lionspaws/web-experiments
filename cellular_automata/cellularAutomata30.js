@@ -1,8 +1,8 @@
 var c = document.getElementById("myCanvas");
 var ctx = c.getContext("2d");
 
-var x = 500;
-var y = 500;
+var x = c.width;
+var y = c.height;
 
 var grid = [];
 
@@ -13,7 +13,7 @@ for(var a = 0; a <= (x*y); a++)
 }
 
 // initialise the pattern
-grid[100] = 1;
+grid[x/2] = 1;
 
 // rule 30
 for(var a = 0; a <= x*y; a++)
@@ -23,59 +23,6 @@ for(var a = 0; a <= x*y; a++)
   var cell_m = a - x;
   var cell_r = a - (x - 1);
 
-  if(grid[cell_l] == 1)
-  {
-    if(grid[cell_m] == 1)
-    {
-      if(grid[cell_r] == 1)
-      {
-        grid[a] = 0; // 111
-      }
-      else
-      {
-        grid[a] = 0; // 110
-      }
-    }
-    else
-    {
-      if(grid[cell_r] == 1)
-      {
-        grid[a] = 0; // 101
-      }
-      else
-      {
-        grid[a] = 1; // 100
-      }
-    }
-  }
-  else
-  {
-    if(grid[cell_m] == 1)
-    {
-      if(grid[cell_r] == 1)
-      {
-        grid[a] = 1; // 011
-      }
-      else
-      {
-        grid[a] = 1; // 010
-      }
-    }
-    else
-    {
-      if(grid[cell_r] == 1)
-      {
-        // 001
-      }
-      else
-      {
-        grid[a] = 0; // 000
-      }
-    }
-  }
-
-
-  /*
   // 111 > 0
   if(grid[cell_l] == 1 && grid[cell_m] == 1 && grid[cell_r] == 1)
   {
@@ -123,7 +70,7 @@ for(var a = 0; a <= x*y; a++)
   {
     grid[a] = 0;
   }
-  */
+
 }
 
 // get a random number from 1-100
