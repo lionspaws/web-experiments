@@ -1,7 +1,7 @@
 # web-experiments
 Somewhere for me to do the various little web-based experiments I have wanted to for years.
 
-# Cellular Automata
+## Cellular Automata
 
 ### elementaryCellularAutomata.js
 
