@@ -14,7 +14,7 @@ More about elementary CA and rules here: http://mathworld.wolfram.com/Elementary
 A javascript file to draw the 1 dimensional pattern CA rules (totalistic CA) in two colours on an html canvas.
 More about totalistic CA and rules here: http://mathworld.wolfram.com/TotalisticCellularAutomaton.html
 
-## gameOfLife.js
+#### gameOfLife.js
 
 The Game of Life by John H. Conway is a type of totalistic CA with three rules for cells in a Moore neighbourhood (r=1):
 
