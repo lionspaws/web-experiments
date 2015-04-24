@@ -1,17 +1,27 @@
 <!DOCTYPE html>
 <html>
+  <head>
+
+  </head>
   <body>
 
     <div id="debug"></div>
 
-    <canvas id="caCanvas" height="500" style="border:2px solid #000000;">
+    <canvas id="caCanvas" height="400" style="border:2px solid #000000;">
     Your browser does not support the HTML5 canvas tag.
     </canvas>
 
-    <select name="rules" id="ruleSelection"></select>
+    <!--<select name="rules" id="ruleSelection"></select>
     <button onclick="updateCanvas()">Update</button>
 
     <script type="text/javascript" src="cellular_automata/elementaryCellularAutomata.js"></script>
+    <script type="text/javascript" src="cellular_automata/totalisticCellularAutomata.js"></script>
+    -->
+
+    <script type="text/javascript" src="cellular_automata/gameOfLife.js"></script>
+    <script>
+      setInterval(function(){ updateCanvas() }, 10);
+    </script>
 
   </body>
 </html>
