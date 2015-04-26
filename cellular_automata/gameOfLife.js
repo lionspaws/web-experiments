@@ -13,15 +13,14 @@ var grid = [];
 // fill the array with zeroes
 for(var a = 0; a <= (x*y); a++)
 {
-  grid.push(0);
-}
-
-// initialise the pattern with a random scattering
-for(var a = 0; a <= (x*y); a++)
-{
-  if(Math.random() >= 0.95)
+  // initialise the pattern with a random scattering
+  if(Math.random() >= 0.96)
   {
-    grid[a] = 1;
+    grid.push(1);
+  }
+  else
+  {
+    grid.push(0);
   }
 }
 
@@ -47,22 +46,23 @@ function updateCanvas()
     var cellH = a + (x + 1);
     var count = grid[cellA] + grid[cellB] + grid[cellC] + grid[cellD] + grid[cellE] + grid[cellF] + grid[cellG] + grid[cellH];
 
-    // if cell is alive
+    // cell is alive
     if(grid[a] == 1)
     {
-      // death: if count is < 2 || > 3, and cell is on, turn it off
+      // 1. Death: if the count is less than 2 or greater than 3, the current cell is switched off.
       if(count < 2 || count > 3)
       {
         grid[a] = 0;
       }
-      // survival: if count == 2 || 3 and cell is on, leave it on
+      // 2. Survival: if (a) the count is exactly 2, or (b) the count is exactly 3 and the current cell is on, the current cell is left unchanged.
       else
       {
         grid[a] = 1;
       }
     }
+    // cell is dead
     else {
-      // life: if count == 3 and cell is off, turn it on
+      // 3. Birth: if the current cell is off and the count is exactly 3, the current cell is switched on.
       if(count == 3)
       {
         grid[a] = 1;
