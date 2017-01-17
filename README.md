@@ -8,6 +8,9 @@ Somewhere for me to do the various little web-based experiments I have wanted to
 A javascript file to draw the 1 dimensional binary pattern CA rules (elementary CA) on an html canvas.
 More about elementary CA and rules here: http://mathworld.wolfram.com/ElementaryCellularAutomaton.html
 
+### elementaryCellularAutomata.pde
+
+A Processing implementation of elementary CA, currently displaying rule 54.
 
 ### totalisticCellularAutomata.js
 
