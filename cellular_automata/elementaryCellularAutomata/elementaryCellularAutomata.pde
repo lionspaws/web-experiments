@@ -5,7 +5,8 @@ Cell[][] grid;
 int cols = 100;
 int rows = 100;
 
-boolean[] outcomeRule = {false,false,false,true,true,true,true,false}; // rule 30
+//boolean[] outcomeRule = {false,false,false,true,true,true,true,false}; // rule 30
+boolean[] outcomeRule = {false,false,true,true,false,true,true,false}; // rule 54
 
 void setup() {
   size(500,500);
