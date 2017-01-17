@@ -5,15 +5,19 @@ Cell[][] grid;
 int cols = 100;
 int rows = 100;
 
+boolean[] outcomeRule = {false,false,false,true,true,true,true,false}; // rule 30
+
 void setup() {
   size(500,500);
   grid = new Cell[cols][rows];
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
       // Initialize each object
-      grid[i][j] = new Cell(i*5,j*5,5,5,1);
+      grid[i][j] = new Cell(i*5,j*5,5,5,false);
     }
   }
+  // Initialize the pattern
+  grid[cols/2][0].filled = true;
 }
 
 void draw() {
@@ -22,40 +26,66 @@ void draw() {
   // are used as arguments to the constructor for each object in the grid.  
   for (int i = 0; i < cols; i++) {
     for (int j = 0; j < rows; j++) {
-      // display each cell
-      grid[i][j].display();
       
       // calculate the result
-      int cellUpLeft = grid[i][j].filled;
-      int cellUpCentre = grid[i][j].filled;
-      int cellUpRight = grid[i][j].filled;
-      
-      // as long as it's not the leftmost cell
-      if(i > 0) {
+      // as long as it's not the left/rightmost cell
+      if(i > 0 && i < cols-1) {
         // or the topmost row
         if(j > 0) {
+          // get the comparison cells
+          boolean cellUpLeft = grid[i-1][j-1].filled;
+          boolean cellUpCentre = grid[i][j-1].filled;
+          boolean cellUpRight = grid[i+1][j-1].filled;
+      
           // 111 and 110
-          if(cellUpLeft == 1) {
-            if(cellUpCentre == 1) {
-              if(cellUpRight == 1) {
-                grid[i][j].filled = 255;  // 111
+          if(cellUpLeft) {
+            if(cellUpCentre) {
+              if(cellUpRight) {
+                grid[i][j].filled = outcomeRule[0];  // 111
               }
-              else if(cellUpRight == 0) {
-                grid[i][j].filled = 255;  // 111
+              else {
+                grid[i][j].filled = outcomeRule[1];  // 110
               }
             }
           }
           // 101 and 100
-          // 101
-          // 100
+          if(cellUpLeft) {
+            if(!cellUpCentre) {
+              if(cellUpRight) {
+                grid[i][j].filled = outcomeRule[2];  // 101
+              }
+              else {
+                grid[i][j].filled = outcomeRule[3];  // 100
+              }
+            }
+          }
           // 011 and 010
-          // 011
-          // 010
+          if(!cellUpLeft) {
+            if(cellUpCentre) {
+              if(cellUpRight) {
+                grid[i][j].filled = outcomeRule[4];  // 011
+              }
+              else {
+                grid[i][j].filled = outcomeRule[5];  // 010
+              }
+            }
+          }
           // 001 and 000
-          // 001
-          // 000
+          if(!cellUpLeft) {
+            if(!cellUpCentre) {
+              if(cellUpRight) {
+                grid[i][j].filled = outcomeRule[6];  // 001
+              }
+              else {
+                grid[i][j].filled = outcomeRule[7];  // 000
+              }
+            }
+          }
         }
       }
+      
+      // display each cell
+      grid[i][j].display();
     }
   }
 }
@@ -66,10 +96,10 @@ class Cell {
   // as well as its size with the variables x,y,w,h
   float x,y;   // x,y location
   float w,h;   // width and height
-  int filled; // 255 or 0; value determines colour
+  boolean filled; // value determines colour
 
   // Cell Constructor
-  Cell(float tempX, float tempY, float tempW, float tempH, int tempFilled) {
+  Cell(float tempX, float tempY, float tempW, float tempH, boolean tempFilled) {
     x = tempX;
     y = tempY;
     w = tempW;
@@ -80,7 +110,12 @@ class Cell {
   void display() {
     stroke(255);
     // Color calculated using filled value
-    fill(filled);
+    if(filled) {
+      fill(0);
+    }
+    else {
+      fill(255);
+    }
     rect(x,y,w,h);
   }
 }
